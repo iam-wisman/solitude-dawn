@@ -1,0 +1,38 @@
+{
+  "name": "solitude-dawn",
+  "displayName": "Solitude Dawn",
+  "description": "Warm paper and a single rising-sun amber. The VS Code half of the Solitude Dawn Omarchy theme, the light companion to Solitude Dusk.",
+  "version": "1.0.0",
+  "publisher": "iam-wisman",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iam-wisman/solitude-dusk"
+  },
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "keywords": [
+    "theme",
+    "light",
+    "omarchy",
+    "solitude",
+    "dawn"
+  ],
+  "galleryBanner": {
+    "color": "#f4f0e8",
+    "theme": "light"
+  },
+  "contributes": {
+    "themes": [
+      {
+        "label": "Solitude Dawn",
+        "uiTheme": "vs",
+        "path": "./themes/solitude-dawn-color-theme.json"
+      }
+    ]
+  }
+}

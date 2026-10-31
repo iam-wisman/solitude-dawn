@@ -1,0 +1,87 @@
+{
+  "position": "top",
+  "transparent": false,
+  "centerAnchor": "omarchy.clock",
+  "layout": {
+    "left": [
+      {
+        "id": "wuisman.kitten"
+      },
+      {
+        "id": "wuisman.workspaces"
+      }
+    ],
+    "center": [
+      {
+        "id": "omarchy.indicators"
+      },
+      {
+        "id": "omarchy.clock",
+        "format": "dddd HH:mm",
+        "formatAlt": "d MMMM 'W'ww yyyy",
+        "verticalFormat": "HH\n—\nmm"
+      },
+      {
+        "id": "omarchy.elsewhen",
+        "cities": [
+          {
+            "name": "Belize",
+            "zone": "America/Belize"
+          },
+          {
+            "name": "Sao Paulo",
+            "zone": "America/Sao_Paulo"
+          },
+          {
+            "name": "London",
+            "zone": "Europe/London"
+          },
+          {
+            "name": "Dubai",
+            "zone": "Asia/Dubai"
+          },
+          {
+            "name": "Tokyo",
+            "zone": "Asia/Tokyo"
+          }
+        ]
+      },
+      {
+        "id": "omarchy.tailscale"
+      },
+      {
+        "id": "omarchy.weather"
+      },
+      {
+        "id": "omarchy.system-update"
+      }
+    ],
+    "right": [
+      {
+        "id": "omarchy.keyboard-layout"
+      },
+      {
+        "id": "omarchy.tray"
+      },
+      {
+        "id": "omarchy.agents"
+      },
+      {
+        "id": "omarchy.bluetooth"
+      },
+      {
+        "id": "omarchy.network"
+      },
+      {
+        "id": "omarchy.audio"
+      },
+      {
+        "id": "omarchy.monitor"
+      },
+      {
+        "id": "omarchy.power"
+      }
+    ]
+  },
+  "id": "wuisman.bar"
+}
