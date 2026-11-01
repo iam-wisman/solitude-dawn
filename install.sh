@@ -31,7 +31,7 @@ THEMES_DIR="$HOME/.config/omarchy/themes"
 DEST="$THEMES_DIR/$THEME_NAME"
 HOOK_DIR="$HOME/.config/omarchy/hooks/theme-set.d"
 PLUGINS_DIR="$HOME/.config/omarchy/plugins"
-VSCODE_VSIX=solitude-dawn-1.0.0.vsix
+VSCODE_VSIX=solitude-dawn-1.0.1.vsix
 CURSOR_THEME=Bibata-Modern-Amber
 CURSOR_SIZE=16
 CURSOR_VERSION=v2.0.7
@@ -116,6 +116,23 @@ backup_vscode_settings() {
   mkdir -p "$BACKUP_DIR/vscode"
   (cd "$user" && find . -maxdepth 3 -name settings.json -path './settings.json' -o -maxdepth 3 -name settings.json -path './profiles/*' |
     while read -r f; do mkdir -p "$BACKUP_DIR/vscode/$(dirname "$f")"; cp "$f" "$BACKUP_DIR/vscode/$f"; done)
+}
+
+update_vscode_extension() {
+  local storage=$HOME/.config/Code/User/globalStorage/storage.json name
+
+  # The vscode-profiles hook only installs the extension where it is missing,
+  # so an older Solitude Dawn already in VS Code would stay. Force the bundled
+  # version into Default and every profile.
+  command -v code >/dev/null || return 0
+  code --install-extension "$DEST/vscode.vsix" --force >/dev/null 2>&1 || return 0
+  if [[ -f $storage ]]; then
+    jq -r '.userDataProfiles // [] | .[] | select(.location | startswith("builtin/") | not) | .name' "$storage" |
+      while IFS= read -r name; do
+        code --install-extension "$DEST/vscode.vsix" --force --profile "$name" >/dev/null 2>&1 || true
+      done
+  fi
+  say "Installed the Solitude Dawn VS Code theme $(unzip -p "$DEST/vscode.vsix" extension/package.json | jq -r .version)"
 }
 
 install_plugins() {
@@ -228,6 +245,7 @@ main() {
   install_hooks "$SRC"
   install_templates "$SRC"
   backup_vscode_settings
+  update_vscode_extension
   if (( ! theme_only )); then
     install_plugins "$SRC"
     apply_bar_layout "$SRC"
